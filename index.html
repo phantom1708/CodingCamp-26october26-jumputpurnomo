@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Expense &amp; Budget Visualizer</h1>
+    <div class="balance-card" aria-live="polite">
+      <span class="balance-label">Total Spent</span>
+      <span class="balance-amount" id="total-balance">$0.00</span>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <section class="card form-section" aria-labelledby="form-heading">
+      <h2 id="form-heading">Add Expense</h2>
+      <form id="expense-form" novalidate>
+        <div class="form-group">
+          <label for="item-name">Item Name</label>
+          <input type="text" id="item-name" name="itemName"
+            placeholder="e.g. Lunch" autocomplete="off" required />
+          <span class="field-error" id="err-name" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount ($)</label>
+          <input type="number" id="amount" name="amount"
+            placeholder="0.00" min="0.01" step="0.01" required />
+          <span class="field-error" id="err-amount" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option value="">-- Select --</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+          <span class="field-error" id="err-category" role="alert"></span>
+        </div>
+        <button type="submit" class="btn-primary">Add Expense</button>
+      </form>
+    </section>
+
+    <section class="card chart-section" aria-labelledby="chart-heading">
+      <h2 id="chart-heading">Spending by Category</h2>
+      <div class="chart-wrapper">
+        <canvas id="expense-chart" aria-label="Pie chart of expenses by category" role="img"></canvas>
+        <p class="chart-empty" id="chart-empty">No data yet. Add an expense to see the chart.</p>
+      </div>
+    </section>
+
+    <section class="card list-section" aria-labelledby="list-heading">
+      <h2 id="list-heading">Transactions</h2>
+      <ul class="transaction-list" id="transaction-list" aria-live="polite"></ul>
+      <p class="list-empty" id="list-empty">No transactions yet.</p>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
